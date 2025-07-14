@@ -1,0 +1,52 @@
+[
+  {
+    "Id": "d6d7cb6b-82b6-4f65-8ad9-344ec2b59779",
+    "Name": "Popular",
+    "OrderNo": 1
+  },
+  {
+    "Id": "f3d13256-07e8-4baf-a259-8133580dd4fa",
+    "Name": "Fruity",
+    "OrderNo": 3
+  },
+  {
+    "Id": "f049c593-d0e0-47b0-bbf1-a1b3ef62914c",
+    "Name": "Sweet",
+    "OrderNo": 4
+  },
+  {
+    "Id": "19c323e2-47d7-4069-b150-668493b4f44d",
+    "Name": "Sour",
+    "OrderNo": 5
+  },
+  {
+    "Id": "cb11a954-b7a9-4e34-8414-98d803fd5d6b",
+    "Name": "Fancy",
+    "OrderNo": 7
+  },
+  {
+    "Id": "209b79c1-bc8c-454e-a49f-b1a41c7ecf0f",
+    "Name": "Frozen",
+    "OrderNo": 8
+  },
+  {
+    "Id": "3cef7beb-e461-4780-922c-758ded40fe45",
+    "Name": "Coffee",
+    "OrderNo": 9
+  },
+  {
+    "Id": "d41735b1-e167-4ffe-bae7-be95611cc442",
+    "Name": "Manly",
+    "OrderNo": 6
+  },
+  {
+    "Id": "d9e12660-b694-4c9d-a90d-567f0dd72c5e",
+    "Name": "Classic",
+    "OrderNo": 2
+  },
+  {
+    "Id": "672dba45-4968-424f-9e7f-57e9c5332987",
+    "Name": "Wine / Champagne",
+    "OrderNo": 10
+  }
+]

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+                xmlns:Control="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="MixItUp.Pages.CreateProfile.CreateProfilePage">
+    <!--ResourceDictionary-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="40"/>
+            <OnIdiom x:Key="GridGreenLength" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <!--Main grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Navigation Bar-->
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Label Text="CREATE PROFILE" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Grid.Column="1"/>
+                </Grid>
+            </Grid>
+            <!--Content Grid-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F37623">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridGreenLength}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:CustomFrame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0" Padding="0" >
+                    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5" IsClippedToBounds="True">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15" Padding="15,0,15,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="180"/>
+                                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Circle Image-->
+                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Control:CircleImage x:Name="ImgProfile" Source="{Binding ProfileImg}" BorderColor="#F37623" BorderThickness="2"  Aspect="AspectFill" HeightRequest="180" WidthRequest="180" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Control:CircleImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TakePhotoCommand}"/>
+                                    </Control:CircleImage.GestureRecognizers>
+                                </Control:CircleImage>
+                            </Grid>
+
+                            <!--Your name section-->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Your Name" Style="{StaticResource StandardLabel}" VerticalOptions="CenterAndExpand" TextColor="Black" Grid.Column="0"></Label>
+                                <local:CustomFrame Padding="0,0,5,0" CornerRadius="5" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="80*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="recipe_name.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Grid.Row="0"></Image>
+                                        <local:CustomEntry Text="{Binding YourName}" Placeholder="Name" PlaceholderColor="#7F90A2" Style="{StaticResource StandardLabel}" Grid.Column="1"></local:CustomEntry>
+                                    </Grid>
+                                </local:CustomFrame>
+                            </Grid>
+
+                            <!--Email section-->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Email Address" Style="{StaticResource StandardLabel}" VerticalOptions="CenterAndExpand" TextColor="Black" Grid.Column="0"></Label>
+                                <local:CustomFrame Padding="0,0,5,0" CornerRadius="5" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="80*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="option.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Grid.Row="0"></Image>
+                                        <local:CustomEntry Placeholder="Email Address" Text="{Binding Email}" PlaceholderColor="#7F90A2" Style="{StaticResource StandardLabel}"   Grid.Column="1"></local:CustomEntry>
+                                    </Grid>
+                                </local:CustomFrame>
+                            </Grid>
+
+                            <!--Password section-->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Password" Style="{StaticResource StandardLabel}" VerticalOptions="CenterAndExpand" TextColor="Black" Grid.Column="0"></Label>
+                                <local:CustomFrame Padding="0,0,5,0" CornerRadius="5" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="80*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Grid.Row="0"></Image>
+                                        <local:CustomEntry Placeholder="Enter your password" Text="{Binding Password}" IsPassword="True" PlaceholderColor="#7F90A2" Style="{StaticResource StandardLabel}"  Grid.Column="1"></local:CustomEntry>
+                                    </Grid>
+                                </local:CustomFrame>
+                            </Grid>
+
+                            <!--Confirm Password section-->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Confirm Password" Style="{StaticResource StandardLabel}" VerticalOptions="CenterAndExpand" TextColor="Black" Grid.Column="0"></Label>
+                                <local:CustomFrame Padding="0,0,5,0" CornerRadius="5" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="80*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="password.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Grid.Row="0"></Image>
+                                        <local:CustomEntry Placeholder="Enter your confirm password" Text="{Binding ConfirmPassword}" IsPassword="True" PlaceholderColor="#7F90A2" Style="{StaticResource StandardLabel}"  Grid.Column="1"></local:CustomEntry>
+                                    </Grid>
+                                </local:CustomFrame>
+                            </Grid>
+
+                            <!--Gender section-->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Gender" Style="{StaticResource StandardLabel}" VerticalOptions="CenterAndExpand" TextColor="Black" Grid.Column="0"></Label>
+                                <local:CustomFrame Padding="0,0,5,0" CornerRadius="5" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="80*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="gender.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Grid.Row="0"></Image>
+                                        <local:CustomEntry Placeholder="Gender" Text="{Binding Gender}" PlaceholderColor="#7F90A2" Style="{StaticResource StandardLabel}"   Grid.Column="1"></local:CustomEntry>
+                                    </Grid>
+                                </local:CustomFrame>
+                            </Grid>
+
+                            <!--Create Account button section-->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <local:CustomFrame HasShadow="True" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,0,10,0" Grid.Column="1" BackgroundColor="#F37623">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CreateAccountCommand}"/>
+                                        </Grid.GestureRecognizers>
+                                        <Label Text="Create Account" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Medium" TextColor="White"></Label>
+                                    </Grid>
+                                </local:CustomFrame>
+                            </Grid>
+
+                        </Grid>
+                    </ScrollView>
+                </local:CustomFrame>
+            </Grid>
+            <!--Ads Section-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675"  Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+ 
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

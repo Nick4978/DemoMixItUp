@@ -1,0 +1,212 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             xmlns:lv="clr-namespace:LaavorRatingSwap;assembly=RatingAndSwap"
+             xmlns:converters="clr-namespace:MixItUp.Converters;assembly=MixItUp"
+             mc:Ignorable="d"
+             x:Class="MixItUp.Pages.RecipeDetail.RecipeDetailPage"
+             NavigationPage.HasNavigationBar="False">
+    <!--ResourceDictionary-->
+    <ContentPage.Resources>
+        <converters:ImageConverter x:Key="imageConverter" />
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="40"/>
+            <OnIdiom x:Key="GridHigher" x:TypeArguments="GridLength"  Tablet="150" Phone="100"/>
+            <OnIdiom x:Key="GridFrame" x:TypeArguments="GridLength"  Tablet="250" Phone="200"/>
+            <OnIdiom x:Key="GridGreenLength" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="SmallLength" x:TypeArguments="GridLength"  Tablet="30" Phone="30"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Navigation Bar-->
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"  />
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="mastermenu"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+                    </Grid>
+                    <Label Text="RECIPE DETAILS" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Grid.Column="1"/>
+                    <Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
+                </Grid>
+            </Grid>
+            <!--Main Grid--> 
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource seperatorGrey}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridGreenLength}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:CustomFrame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0">
+                    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,-10,0,0" BackgroundColor="Transparent">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15" Margin="10,15,10,-10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="{Binding DefaultImage, Converter={StaticResource imageConverter}}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                   HeightRequest="125" WidthRequest="125" Aspect="AspectFit" />
+                            <Image Source="share.png" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource StandardIcon}" Grid.Row="0" Margin="0,0,20,0" ></Image>
+                            <Label Grid.Row="1" Text="{Binding RecipeName}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" TextColor="{StaticResource seperatorGrey}"  Style="{StaticResource StandardLabel}" />
+                            <Label Grid.Row="2" Text="(modify)" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Small" Style="{StaticResource StandardLabel}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="EditRecipeNaviagtion"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <local:CustomFrame Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="True" CornerRadius="15" Padding="10" BackgroundColor="Transparent">                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">                                    <Grid.RowDefinitions>                                        <RowDefinition Height="{StaticResource GridGreenLength}"/>                                        <RowDefinition Height="Auto"/>                                    </Grid.RowDefinitions>                                    <Label Grid.Row="0" Text="Ingredients:" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" Style="{StaticResource StandardLabel}"/>                                    <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">                                        <!--ListView Region-->                                        <local:RepeaterView  ItemsSource="{Binding RecipeDetail}" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">                                            <local:RepeaterView.ItemTemplate>                                                <DataTemplate>                                                    <ViewCell>
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <ImageButton Grid.Column="0" Source="plus.png" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Clicked="AddToCabinet_OnClicked" />
+                                                            <Label Grid.Column="1" Text="{Binding Quantity}" LineBreakMode="CharacterWrap" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardLabel}"/>
+                                                            <Label Grid.Column="2" Text="{Binding Ingredient}" LineBreakMode="CharacterWrap" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardLabel}"/>
+                                                            <input:CheckBox Grid.Column="3" Type="Check" HorizontalOptions="EndAndExpand" BoxBackgroundColor="Transparent" CheckChanged="Ingredient_OnCheckChanged" BorderColor="#F37623" Color="Green" Margin="5,0,0,0" IsChecked="{Binding InCabinet, Mode=TwoWay}"/>
+                                                        </Grid>
+                                                    </ViewCell>                                                </DataTemplate>                                            </local:RepeaterView.ItemTemplate>                                        </local:RepeaterView>                                    </Grid>                                </Grid>                            </local:CustomFrame>
+
+                            <StackLayout Grid.Row="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label Text="Nutrition information" LineBreakMode="TailTruncation" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="#4F92F3"  TextDecorations="Underline" >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="NutritionPagenavigation"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Directions:" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" Style="{StaticResource StandardLabel}" FontSize="Large" Grid.Column="0"></Label>
+                                <!--<local:CustomFrame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="30" BackgroundColor="#F37623" HeightRequest="18" WidthRequest="18" Grid.Column="1"></local:CustomFrame>-->
+
+                            </Grid>
+                            <Grid Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label LineBreakMode="WordWrap" Text="{Binding Instructions}"  Style="{StaticResource StandardLabel}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+                            </Grid>
+                            <Grid Grid.Row="8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="thumbup.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardIcon}" Grid.Column="0" ></Image>
+                                    <!--<local:CustomFrame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="30" BackgroundColor="#A3BC49" HeightRequest="15" WidthRequest="15" Grid.Column="0"></local:CustomFrame>
+                                    <Image Source="thumb_up.png" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />-->
+                                    <Label Text="Love it!" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="TailTruncation" FontSize="Small" Style="{StaticResource StandardLabel}" TextColor="Black" FontAttributes="None" Grid.Column="1"/>
+                                </Grid>
+                                <Grid Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="thumbdown.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardIcon}" Grid.Column="0" ></Image>
+                                    <!--<local:CustomFrame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="30" BackgroundColor="#F37623" HeightRequest="15" WidthRequest="15" Grid.Column="0"></local:CustomFrame>
+                                    <Image Grid.Column="0" Source="thumb_down.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />-->
+                                    <Label Text="No Thanks" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="NoWrap" FontSize="Small" Style="{StaticResource StandardLabel}" FontAttributes="None" TextColor="Black" Grid.Column="1"/>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Reviews:" Grid.Row="0" Grid.Column="0"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardLabel}" TextColor="Black"/>
+                                    <lv:RatingImage Grid.Row="0" Grid.Column="1" ImageDeselect="star_line.png" ImageSelect="yellow_star.png" ItemsNumber="5" InitialValue="2" ImageHeight="15" ImageWidth="15"
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" SpaceBetween="2" IsReadOnly="True" />
+                                    <Label Text="(4.5 out of 1,250 reviews)" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="NoWrap" FontAttributes="None" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardLabel}" TextColor="Black"/>
+                                </Grid>
+                                <Label Text="Write a Review" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextDecorations="Underline" TextColor="#4F92F3" Margin="0,0,5,0">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ReviewNavigation"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                            <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <!--RepeaterView Region-->                                <local:RepeaterView ItemsSource="{Binding ReviewDetail}" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="Transparent" >                                    <local:RepeaterView.ItemTemplate>                                        <DataTemplate>                                            <ViewCell>                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="{StaticResource SmallLength}"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource StandardLabel}" />
+                                                        <lv:RatingImage ImageDeselect="star_line.png" ImageSelect="yellow_star.png" ItemsNumber="5" InitialValue="4" ImageHeight="10" ImageWidth="10"
+                                                                 HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" SpaceBetween="1" IsReadOnly="True" />
+                                                    </Grid>
+                                                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <Label Text="{Binding Review}" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource StandardLabel}" />
+                                                    </Grid>
+                                                </Grid>                                            </ViewCell>                                        </DataTemplate>                                    </local:RepeaterView.ItemTemplate>                                </local:RepeaterView>
+                            </Grid>
+
+                            <!--<local:CustomFrame Grid.Row="11" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,5,10,5" HasShadow="True" BackgroundColor="White" >
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="{StaticResource SmallLength}"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="Maria" FontSize="Large" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource StandardLabel}" />
+                                        <lv:RatingImage ImageDeselect="star_line.png" ImageSelect="yellow_star.png" ItemsNumber="5" InitialValue="4" ImageHeight="10" ImageWidth="10"
+                                                        HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" SpaceBetween="1" />
+                                    </Grid>
+                                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="Lorel Ipsum is simply Dummy Text of printing And typesetting Industry.Lorel Ipsum has been Industy Standard." FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource StandardLabel}" />
+                                    </Grid>
+                                </Grid>
+                            </local:CustomFrame>-->
+                        </Grid>
+                    </ScrollView>
+                </local:CustomFrame>
+            </Grid>
+            <!--Ads Section-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675"  Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

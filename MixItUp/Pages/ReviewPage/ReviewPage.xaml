@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+             xmlns:lv="clr-namespace:LaavorRatingSwap;assembly=RatingAndSwap"
+             x:Class="MixItUp.Pages.ReviewPage.ReviewPage">
+    <!--ResourceDictionary-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="40"/>
+            <OnIdiom x:Key="GridGreenLength" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <!--Main grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Navigation Bar-->
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="mastermenu"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="back.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Label Text="WRITE A REVIEW" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Grid.Column="1"/>
+                    <Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
+                </Grid>
+            </Grid>
+            <!--Content Grid-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource seperatorGrey}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridGreenLength}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:CustomFrame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0" Padding="0,0,0,5">
+                    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15" Margin="15,0,15,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="santa_lrene.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="0"></Image>
+                            <Label Text="Santa Irene" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" TextColor="{StaticResource seperatorGrey}"  Style="{StaticResource StandardLabel}" Grid.Row="1" ></Label>
+                            <lv:RatingImage Grid.Row="2" ImageDeselect="star_line.png" ImageSelect="yellow_star.png" ItemsNumber="5" InitialValue="2" ImageHeight="40" ImageWidth="40"
+                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" SpaceBetween="2" />
+                            <Label Text="Tap a Star to Rate" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="Large" Style="{StaticResource StandardLabel}" Grid.Row="3" ></Label>
+                            <Label Text="Title" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" TextColor="Black"  Style="{StaticResource StandardLabel}" Grid.Row="4" Margin="2,0,2,0"></Label>
+                            <local:CustomFrame Padding="10,0,10,0" BorderColor="WhiteSmoke" CornerRadius="10" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="5" Margin="2,0,2,0">
+                                <local:CustomEntry Placeholder="Title here" PlaceholderColor="#7F90A2" Style="{StaticResource StandardLabel}" ></local:CustomEntry>
+                            </local:CustomFrame>
+                            <Label Text="Reviews:" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" TextColor="Black"  Style="{StaticResource StandardLabel}" Grid.Row="6" Margin="2,0,2,0" ></Label>
+                            <local:CustomFrame BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10" Grid.Row="7" Margin="2,0,2,0">
+                                <local:CustomEditor Placeholder="Write a review here..." PlaceholderColor="#7F90A2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{StaticResource StandardLabel}" ></local:CustomEditor>
+                            </local:CustomFrame>
+                            <local:CustomFrame HasShadow="True" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,0,10,0" Grid.Row="8" BackgroundColor="{StaticResource seperatorGrey}">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                    <Label Text="Rate" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardLabel}" TextColor="White"></Label>
+                                </Grid>
+                            </local:CustomFrame>
+                        </Grid>
+                    </ScrollView>
+                </local:CustomFrame>
+            </Grid>
+            <!--Ads Section-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675"  Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

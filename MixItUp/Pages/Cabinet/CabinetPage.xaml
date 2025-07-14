@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+             x:Class="MixItUp.Pages.Cabinet.CabinetPage"
+             NavigationPage.HasNavigationBar="False">
+    <!--ResourceDictionary-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="40"/>            
+            <OnIdiom x:Key="GridGreenLength" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>           
+            <OnIdiom x:Key="SPACING" x:TypeArguments="GridLength"  Tablet="10" Phone="5"/>           
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <!--Main grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Navigation Bar-->
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="mastermenu"/>
+                        </Grid.GestureRecognizers>
+                    <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
+                    </Grid>
+                    <Label Text="CABINET" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Grid.Column="1"/>
+                    <Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>
+                </Grid>
+            </Grid>
+            <!--Content Grid-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource seperatorGrey}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridGreenLength}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <local:CustomFrame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0" >                   
+                        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15" Margin="10,5,0,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{StaticResource GridLength1}"/>
+                                <RowDefinition Height="*"/>                                
+                            </Grid.RowDefinitions>
+                            <!--Picker With Frame-->
+                            <local:CustomFrame CornerRadius="15" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="0">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <local:ArmPicker   Title="Home Cabinet"  HeightRequest="50" FontSize="Default"   TextColor="Black" Margin="10,0,0,0" HorizontalOptions="FillAndExpand">
+                                        <Picker.Items>
+                                            <x:String>1</x:String>
+                                            <x:String>2</x:String>
+                                        </Picker.Items>
+                                    </local:ArmPicker>
+                                    <Image Source="down_arrow.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"></Image>
+                                </Grid>
+                            </local:CustomFrame>
+                            <local:CustomFrame Padding="10,0,10,0" CornerRadius="15" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Grid.Row="1">
+                              <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="{StaticResource GridLength1}"/>
+                                        <RowDefinition Height="{StaticResource GridLength1}"/>
+                                        <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                    <Label Text="Items In Your Cabinet" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="5,0,0,0" TextColor="Black"  Style="{StaticResource StandardLabel}" Grid.Row="0" ></Label>
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                        <!--Picker With Frame-->
+                                        <local:CustomFrame Padding="0" BorderColor="WhiteSmoke" CornerRadius="15" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <local:ArmPicker  Title="Ingredients"  HeightRequest="50" FontSize="Default"  TextColor="Black" Margin="10,0,0,0" HorizontalOptions="FillAndExpand">
+                                                <Picker.Items>
+                                                    <x:String>1</x:String>
+                                                    <x:String>2</x:String>
+                                                </Picker.Items>
+                                            </local:ArmPicker>
+                                                <Image Source="down_arrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Style="{StaticResource StandardIcon}" Margin="0,0,10,0"></Image>
+                                        </Grid>
+                                    </local:CustomFrame>
+                                        <local:CustomFrame Padding="0" CornerRadius="10" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1" BackgroundColor="#F37623">
+                                            <Label Text="Add ingredient" FontSize="Small" Style="{StaticResource StandardLabel}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" ></Label>
+                                        </local:CustomFrame>
+                                </Grid>
+                                    <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                        <!--ListView Rgion-->
+                                        <ListView x:Name="LvNews" ItemsSource="{Binding IngredientList}" ItemSelected="LvNews_ItemSelected" HasUnevenRows="True"  SeparatorVisibility="None" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="{StaticResource SPACING}"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">                                                             
+                                                            <Grid.ColumnDefinitions>                                                               
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="{StaticResource GridLength1}"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding Types}" HorizontalOptions="StartAndExpand" Style="{StaticResource StandardLabel}" VerticalOptions="CenterAndExpand" Grid.Column="0"></Label>
+                                                            <Image Source="remove.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                                                        </Grid>
+                                                        </Grid>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </Grid>
+                                </Grid>
+                            </local:CustomFrame>                            
+                        </Grid>
+                    </ScrollView>                   
+                </local:CustomFrame> 
+            </Grid>
+            <!--Ads Section-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675"  Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+ 
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

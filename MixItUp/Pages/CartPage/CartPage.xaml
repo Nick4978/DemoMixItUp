@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+             mc:Ignorable="d"
+             x:Class="MixItUp.Pages.CartPage.CartPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="GridCoulmnSpace" x:TypeArguments="GridLength"  Tablet="0" Phone="10"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+            <OnIdiom x:Key="ImageSize" x:TypeArguments="x:Double"  Tablet="100" Phone="80"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <!--Main Grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Navigation Bar Section-->
+            <Grid Grid.Row="0" x:Name="GrdSearchIcon" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+                <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="MasterMenu"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                    <Label x:Name="CartLst" IsVisible="True" Text="CART" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardLabel}" FontAttributes="Bold" Grid.Column="1"/>
+                    <Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IconSearch_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="0" IsVisible="False" x:Name="txtSearchBar" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" BackgroundColor="Black" Opacity="0.5"></Frame>
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="Transparent" BorderColor="White" Padding="0" Margin="5,5,5,5" >
+                    <local:CustomEntry Placeholder="Search Here" PlaceholderColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium" TextColor="White" TextChanged="SearchBar_OnTextChanged" Margin="5,0,0,0" ></local:CustomEntry>
+                </Frame>
+                <Image Grid.Column="1" Source="remove.png" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="back_EventTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Frame Grid.Column="2" BackgroundColor="Black" Opacity="0.5"></Frame>
+            </Grid>
+
+            <!-- Cart List Section -->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource seperatorGrey}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridLength1}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:CustomFrame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0" >
+                    <ListView x:Name="RecipeList" ItemsSource="{Binding ProductsList}" HasUnevenRows="True" Margin="5,10,5,0" ItemTapped="RecipeClicked" ItemSelected="RecipeList_ItemSelected" VerticalScrollBarVisibility="Never" SeparatorVisibility="None"  >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MinimumHeightRequest="{StaticResource ImageSize}" BackgroundColor="Transparent" >
+                                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10" Margin="0,10" CornerRadius="10" BackgroundColor="#FCFAF8" BorderColor="{StaticResource seperatorGrey}" HasShadow="False">
+                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="{StaticResource GridCoulmnSpace}"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Image}" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" Style="{StaticResource StandardImage}" HeightRequest="110" WidthRequest="150" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+                                                <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="0,10,0,0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="{Binding ProductNane}" Grid.Row="0" FontAttributes="Bold" Style="{StaticResource StandardLabel}" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"/>
+                                                    <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
+                                                        <Image Source="plus.png" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardIcon}" ></Image>
+
+                                                        <Label  Text="1" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" WidthRequest="30" />
+                                                        <Image Source="minus.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource StandardIcon}" ></Image>
+
+                                                    </StackLayout>
+                                                </Grid>
+                                            </Grid>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </local:CustomFrame>
+            </Grid>
+            <!--Ads Section-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675"  Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

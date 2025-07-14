@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              xmlns:local="clr-namespace:MixItUp.CustomControls"
+              xmlns:converters="clr-namespace:MixItUp.Converters"
+             x:Class="MixItUp.Pages.RecipePage.NewTestPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <converters:HeartImageConverter x:Key="heartImageConverter" />
+        <converters:ImageConverter x:Key="imageConverter" />
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+            <OnIdiom x:Key="ImageSize" x:TypeArguments="x:Double"  Tablet="100" Phone="80"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+ 
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20" BackgroundColor="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Label Text="Paginations" Grid.Row="0" FontAttributes="Bold" FontSize="18" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <local:AdMobView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+                <!--<Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ListView  x:Name="LstRecipe" ItemAppearing="LstRecipe_ItemAppearing"  ItemsSource="{Binding TempRecipeList, Mode=TwoWay}" HasUnevenRows="True" SelectionMode="Single"
+                                       SeparatorVisibility="Default" VerticalScrollBarVisibility="Never" HorizontalOptions="Center" VerticalOptions="FillAndExpand" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="60*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding DefaultImage, Converter={StaticResource imageConverter}}" HeightRequest="40" WidthRequest="40" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="16"   FontAttributes="Bold" TextColor="Black" LineBreakMode="TailTruncation"
+                                                      HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>-->
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

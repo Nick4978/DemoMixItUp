@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+             xmlns:Control="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="MixItUp.Pages.UserProfile.UserProfilePage"
+               xmlns:lv="clr-namespace:LaavorRatingSwap;assembly=RatingAndSwap"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="40"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+            <OnIdiom x:Key="GridImageCircle" x:TypeArguments="GridLength"  Tablet="350" Phone="200"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <!--Main grid-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Navigation Bar-->
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="MasterMenu"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+                    </Grid>
+                    <Label Text="PROFILE" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Grid.Column="1"/>
+                    <!--<Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2"/>-->
+                </Grid>
+            </Grid>
+            <!--Content Grid-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource seperatorGrey}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridLength1}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:CustomFrame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0" Padding="0" >
+                    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0,0,0,10" >
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="15,0,15,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="180"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                                </Grid.RowDefinitions>
+                                <!--Circle Image-->
+                                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Control:CircleImage x:Name="profileImg" Source="{Binding ProfileImg}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Image Source="edit_with_circle.png" IsVisible="{Binding IsEditProfileImg}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" TranslationX="80" TranslationY="-10" HeightRequest="50" WidthRequest="50" >
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EditProfileCommand}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+
+                                <!--Name Label-->
+                                <Grid Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label x:Name="lblLogin" Text="{Binding Login}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Style="{StaticResource StandardLabel}" TextColor="Blue" TextDecorations="Underline">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Login_Tapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+
+                                <!--User Details-->
+                                <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="{StaticResource GridLength1 }"/>
+                                        <RowDefinition Height="{StaticResource GridLength1 }"/>
+                                        <RowDefinition Height="{StaticResource GridLength1 }"/>
+                                        <RowDefinition Height="10"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="User Name" Style="{StaticResource StandardLabel}"  TextColor="Black" Grid.Column="0"/>
+                                        <Label x:Name="lblUserName" Text="{Binding UserName}" Style="{StaticResource StandardLabel}" Grid.Column="1"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Email Address" Style="{StaticResource StandardLabel}"  TextColor="Black" Grid.Column="0"/>
+                                        <Label x:Name="lblEmail" Text="{Binding Email}" Style="{StaticResource StandardLabel}" Grid.Column="1"/>
+                                    </Grid>
+                                    <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Reviews" Style="{StaticResource StandardLabel}"  TextColor="Black" Grid.Column="0"/>
+                                        <Label Text="{Binding Reviews}" Style="{StaticResource StandardLabel}" Grid.Column="1"/>
+                                    </Grid>
+                                </Grid>
+
+                                <!--Edit Button-->
+                                <!--<local:CustomFrame Grid.Row="5" IsVisible="{Binding IsEditProfile}" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F37623" Padding="0">
+                                    <local:CustomFrame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EditProfileCommand}"/>
+                                    </local:CustomFrame.GestureRecognizers>
+                                    <Label Text="Edit Profile" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Style="{StaticResource StandardLabel}" TextColor="White"></Label>
+                                </local:CustomFrame>-->
+
+                            </Grid>
+                        </Grid>
+                    </ScrollView>
+                </local:CustomFrame>
+            </Grid>
+            <!--Ads Section-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675"  Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

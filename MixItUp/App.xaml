@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MixItUp.App">
+    <Application.Resources>
+        <OnIdiom x:Key="StandardFontSize" x:TypeArguments="x:Double"  Tablet="20" Phone="16"/>
+        <OnIdiom x:Key="GridHeaderLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+        <OnIdiom x:Key="GridSize" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+        <OnIdiom x:Key="IconSize" x:TypeArguments="x:Double" Tablet="50" Phone="40" />
+        <OnIdiom x:Key="ImageHeight" x:TypeArguments="x:Double" Tablet="110" Phone="70" />
+        <OnIdiom x:Key="ImageWidth" x:TypeArguments="x:Double" Tablet="150" Phone="90" />
+
+        <Color x:Key="seperatorGrey">#F37623</Color>
+
+        <Style x:Key="StandardLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="{DynamicResource StandardFontSize}"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="#7F90A2"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="FontAttributes" Value="None"/>
+        </Style>
+        <Style x:Key="StandardIcon" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="Aspect" Value="AspectFit"/>
+            <Setter Property="HeightRequest" Value="{DynamicResource IconSize }"/>
+            <Setter Property="WidthRequest" Value="{DynamicResource IconSize}" />
+        </Style>
+        <Style x:Key="StandardImage" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="Aspect" Value="AspectFit"/>
+            <Setter Property="HeightRequest" Value="{DynamicResource ImageHeight }"/>
+            <Setter Property="WidthRequest" Value="{DynamicResource ImageWidth}" />
+        </Style>           
+    </Application.Resources>
+</Application>

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="MixItUp.Pages.MasterPage.MasterPage" MasterBehavior="Popover" Title="MasterPage" 
+                   xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+                  NavigationPage.HasNavigationBar="False">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Master" Icon="menu.png">
+            <ContentPage.Content>
+                <!--Main Grid-->
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--User Detail Section-->
+                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                        <Image Source="profile_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" WidthRequest="90"></Image>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Login_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Label x:Name="lblLogin" Text="Login"  Style="{StaticResource StandardLabel}" Margin="0,5,10,0"  TextColor="Blue" TextDecorations="Underline" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" VerticalOptions="StartAndExpand" VerticalTextAlignment="Start"/>
+                                </Grid>
+                            </Grid>
+
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <controls:CircleImage x:Name="ImgProfilePic" Source="profile_noimage.png" Grid.Row="1" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  HeightRequest="100" WidthRequest="100"/>
+                                <Label x:Name="lblUserName" Text="No Name" Grid.Row="2" Style="{StaticResource StandardLabel}"  TextColor="White" HorizontalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <!--Navigation Menu List Section-->
+                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5">
+                        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                    <RowDefinition Height="{StaticResource GridSize}"/>
+                                </Grid.RowDefinitions>
+                                <!--Grids of Menu Bar-->
+                                <Grid Grid.Row="0" x:Name="grdCock" xe:TouchEffect.Color="Orange">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="Cocktails_Clicked" />
+                                    </Grid.GestureRecognizers>-->
+                                    <Image x:Name="ImgCocktailOrng" IsVisible="True" Source="cocktail.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblCocktailOrng" IsVisible="True" Text="Cocktails" Grid.Column="1"  Style="{StaticResource StandardLabel}" TextColor="Orange"  Margin="10,0,0,0"/>
+
+                                    <Image x:Name="ImgCocktailBlack" IsVisible="False" Source="cocktailblk.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblCocktailBlack" IsVisible="False" Text="Cocktails" Grid.Column="1"  Style="{StaticResource StandardLabel}" TextColor="Black"  Margin="10,0,0,0"/>
+                                </Grid>
+                                <Grid Grid.Row="1" x:Name="grdCart" xe:TouchEffect.Color="Orange">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="MyCart_Clicked" />
+                                    </Grid.GestureRecognizers>-->
+                                    <Image x:Name="ImgMyCartBlack" IsVisible="True" Source="user_creations.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label  x:Name="LblMyCartBlack" IsVisible="True" Text="My Cart" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Black" Margin="10,0,0,0"/>
+
+                                    <Image x:Name="ImgMyCartOrng" IsVisible="False" Source="cookerorange.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblMyCartOrng" IsVisible="False" Text="My Cart" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Orange" Margin="10,0,0,0"/>
+                                </Grid>
+                                <Grid Grid.Row="2" x:Name="grdCabinet" xe:TouchEffect.Color="Orange">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="MyCabinets_Clicked" />
+                                    </Grid.GestureRecognizers>-->
+                                    <Image x:Name="ImgCabinetBlack" IsVisible="True" Source="user_creations.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblCabinetBlack" IsVisible="True" Text="My Cabinets" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Black" Margin="10,0,0,0"/>
+
+                                    <Image x:Name="ImgCabinetOrng" IsVisible="False" Source="cookerorange.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblCabinetOrng" IsVisible="False" Text="My Cabinets" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Orange" Margin="10,0,0,0"/>
+                                </Grid>
+                                <Grid Grid.Row="3" x:Name="grdProfile" xe:TouchEffect.Color="Orange">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="MyProfile_Clicked"  />
+                                    </Grid.GestureRecognizers>-->
+                                    <Image x:Name="ImgProfileBlack" IsVisible="True" Source="shots.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblProfileBlack" IsVisible="True" Text="My Profile" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Black" Margin="10,0,0,0"/>
+
+                                    <Image x:Name="ImgProfileOrng" IsVisible="False" Source="shotsorange.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblProfileOrng" IsVisible="False" Text="My Profile" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Orange" Margin="10,0,0,0"/>
+                                </Grid>
+                                <Grid Grid.Row="4" x:Name="grdMyRecipes" xe:TouchEffect.Color="Orange">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="MyRecipes_Clicked"  />
+                                    </Grid.GestureRecognizers>-->
+                                    <Image x:Name="ImgMyRecipesBlack" IsVisible="True" Source="shots.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblMyRecipesBlack" IsVisible="True" Text="My Recipes" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Black" Margin="10,0,0,0"/>
+
+                                    <Image x:Name="ImgMyRecipesOrng" IsVisible="False" Source="shotsorange.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblMyRecipesOrng" IsVisible="False" Text="My Recipes" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Orange" Margin="10,0,0,0"/>
+                                </Grid>
+                                
+                                <Grid Grid.Row="5" x:Name="grdPresentation" xe:TouchEffect.Color="Orange" IsVisible="false">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="Presentation_Clicked"  />
+                                    </Grid.GestureRecognizers>-->
+                                    <Image x:Name="ImgPresentationBlack" IsVisible="True" Source="shots.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblPresentationBlack" IsVisible="True" Text="Presentation" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Black" Margin="10,0,0,0"/>
+
+                                    <Image x:Name="ImgPresentationOrng" IsVisible="False" Source="shotsorange.png" Grid.Column="0" Style="{StaticResource StandardIcon}" />
+                                    <Label x:Name="LblPresentationOrng" IsVisible="False" Text="Presentation" Grid.Column="1" Style="{StaticResource StandardLabel}" TextColor="Orange" Margin="10,0,0,0"/>
+                                </Grid>
+                            </Grid>
+                        </ScrollView>
+                    </Grid>
+                </Grid>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <ContentPage Padding="10">
+            <ContentPage.Content>
+                <StackLayout Margin="5,30,5,5">
+                    <Label Text="Detail Page">
+                    </Label>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

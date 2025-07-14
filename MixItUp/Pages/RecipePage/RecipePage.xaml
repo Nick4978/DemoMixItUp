@@ -1,0 +1,235 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:suave="clr-namespace:SuaveControls.DynamicStackLayout;assembly=SuaveControls.DynamicStackLayout"
+             xmlns:local="clr-namespace:MixItUp.CustomControls"
+             xmlns:lv="clr-namespace:LaavorRatingSwap;assembly=RatingAndSwap"
+             mc:Ignorable="d"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             xmlns:cards="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView"
+             xmlns:converters="clr-namespace:MixItUp.Converters;assembly=MixItUp"
+             xmlns:abstractions="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="MixItUp.Pages.RecipePage.RecipePage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             x:Name="RecipePageForm">
+    <ContentPage.Resources>
+        <converters:HeartImageConverter x:Key="heartImageConverter" />
+        <converters:ImageConverter x:Key="imageConverter" />
+        <ResourceDictionary>
+            <OnIdiom x:Key="GridLength1" x:TypeArguments="GridLength"  Tablet="50" Phone="30"/>
+            <OnIdiom x:Key="GridColumnLength" x:TypeArguments="GridLength"  Tablet="70" Phone="50"/>
+            <OnIdiom x:Key="ImageSize" x:TypeArguments="x:Double"  Tablet="100" Phone="80"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <!--Main Grid-->
+        <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource GridHeaderLength}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Navigation Bar Header-->
+            <Grid x:Name="GrdSearchIcon" IsVisible="True" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="header_bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImageButton_Clicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="menu.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Label x:Name="RecipeLst" Text="RECIPE LIST" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" 
+                           FontSize="Large" FontAttributes="Bold" Grid.Column="1" IsVisible="True"/>
+                    <Image Source="search.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IconSearch_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="0" IsVisible="False" x:Name="txtSearchBar" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" BackgroundColor="Black" Opacity="0.5"></Frame>
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="Transparent" 
+                       BorderColor="White" Padding="0" Margin="5,5,5,5">
+                    <local:CustomEntry x:Name="SearchBox" Placeholder="Search For..." PlaceholderColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" 
+                                       FontSize="Medium" TextColor="White" TextChanged="SearchBar_OnTextChanged" Margin="5,0,0,0" />
+                </Frame>
+                <Image Grid.Column="1" Source="remove_white.png" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="back_EventTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Frame Grid.Column="2" BackgroundColor="Black" Opacity="0.5"></Frame>
+            </Grid>
+
+            <Grid Grid.Row="0" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="{StaticResource GridColumnLength}"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" BackgroundColor="Black" Opacity="0.5"></Frame>
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="15" BackgroundColor="Transparent" 
+                       BorderColor="White" Padding="0" Margin="5,5,5,5" >
+                    <local:CustomEntry PlaceholderColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" 
+                                       FontSize="Medium" TextColor="White" TextChanged="SearchBar_OnTextChanged"   Margin="5,0,0,0" />
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource seperatorGrey}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource GridLength1}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Horizontal List View-->
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <ScrollView x:Name="TabScroll" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <suave:DynamicStackLayout x:Name="TapableList" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
+                                                  VerticalOptions="CenterAndExpand" ItemsSource="{Binding Categories}">
+                            <suave:DynamicStackLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <local:CustomGrid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" Margin="10,0,10,0" ClassId="{Binding Name}">
+                                        <local:CustomGrid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="HorizontalListView_OnTapped"/>
+                                        </local:CustomGrid.GestureRecognizers>
+                                        <local:CustomGrid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </local:CustomGrid.RowDefinitions>
+                                        <local:CustomGrid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </local:CustomGrid.ColumnDefinitions>
+                                        <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" FontAttributes="None" FontSize="Medium" TextColor="White" 
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
+                                               TextDecorations="{Binding TextDecorationStyle, Mode=TwoWay}" LineBreakMode="CharacterWrap"/>
+                                        <!--<BoxView BackgroundColor="White" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" 
+                                                 VerticalOptions="Center" WidthRequest="1" HeightRequest="15" />-->
+                                    </local:CustomGrid>
+                                </DataTemplate>
+                            </suave:DynamicStackLayout.ItemTemplate>
+                        </suave:DynamicStackLayout>
+                    </ScrollView>
+                </Grid>
+
+                <!-- Recipe List -->
+                <local:CustomFrame x:Name="CustomFrame" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FCFAF8" CornerRadius="80,0,0,0">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-10,-10,0,-10">
+                            <abstractions:CarouselViewControl  x:Name="RecipeCarousel"  PositionSelected="RecipeCarousel_OnCurrentItemChanged" ItemsSource="{Binding RecipeCarousel, Mode=TwoWay}" Position="0"
+                                                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"
+                                                               WidthRequest="{Binding ScreenWidth, Source={x:Reference RecipePageForm}, Mode=TwoWay}">
+                                <abstractions:CarouselViewControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+                                            <local:NativeListView Margin="0,10,-10,0" ItemSelected="RecipeList_ItemSelected"  ItemsSource="{Binding Recipes, Mode=TwoWay}" 
+                                                                  SelectedCategory="{Binding SelectedCategory, Source={x:Reference RecipePageForm}, Mode=TwoWay}"
+                                                                  VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True" BackgroundColor="Transparent" 
+                                                                  ItemAppearing="ListView_OnItemAppearing"
+                                                                  HorizontalOptions="Fill" VerticalOptions="Fill" 
+                                                                  ScrollToRecipe="{Binding ScrollToRecipe, Source={x:Reference RecipePageForm}}"
+                                                                  ScrollToItem="{Binding ScrollToItem, Source={x:Reference RecipePageForm}}">
+
+                                                <local:NativeListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell>
+                                                            <local:CustomGrid HorizontalOptions="Fill" VerticalOptions="Fill"  MinimumHeightRequest="{StaticResource ImageSize}" Padding="15,10,0,0">
+                                                                <Frame HorizontalOptions="Fill" VerticalOptions="Fill" Padding="0" 
+                                                                       Margin="0,5,10,0" CornerRadius="10" BackgroundColor="#FCFAF8" BorderColor="{StaticResource seperatorGrey}" HasShadow="True">
+                                                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="50"/>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Source="{Binding DefaultImage, Converter={StaticResource imageConverter}}" Grid.Column="0" Grid.Row="0" 
+                                                                               HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" Aspect="AspectFit" 
+                                                                               HeightRequest="75" WidthRequest="50" Margin="5,5,5,5" />
+                                                                        <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+                                                                            <Grid.RowDefinitions>
+                                                                                <RowDefinition Height="Auto"/>
+                                                                                <RowDefinition Height="Auto"/>
+                                                                                <RowDefinition Height="*"/>
+                                                                            </Grid.RowDefinitions>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" 
+                                                                                   VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Medium" TextColor="Black" 
+                                                                                   BackgroundColor="Transparent" Margin="0,5,0,0" LineBreakMode="TailTruncation" />
+                                                                            <Image Grid.Row="0" Source="{Binding IsFavorite, Converter={StaticResource heartImageConverter}, Mode=TwoWay}"
+                                                                                   Grid.Column="1" HorizontalOptions="End" VerticalOptions="StartAndExpand" BackgroundColor="Transparent" 
+                                                                                   HeightRequest="30" WidthRequest="30" Aspect="AspectFit" Margin="0,5,10,1" >
+                                                                                <Image.GestureRecognizers>
+                                                                                    <TapGestureRecognizer Tapped="HeartImageClicked"/>
+                                                                                </Image.GestureRecognizers>
+                                                                            </Image>
+                                                                            <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" Style="{StaticResource StandardLabel}" 
+                                                                                   FontSize="Small" MaxLines="2" LineBreakMode="TailTruncation" />
+                                                                            <lv:RatingImage Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ImageDeselect="star_line.png" 
+                                                                                            ImageSelect="yellow_star.png" ImageHeight="12" ImageWidth="12" ItemsNumber="5" 
+                                                                                            InitialValue="{Binding Rating}" HorizontalOptions="End" VerticalOptions="End" 
+                                                                                            SpaceBetween="2" IsReadOnly="True" Margin="0,0,2,0" />
+                                                                        </Grid>
+                                                                    </Grid>
+                                                                </Frame>
+                                                                <local:CustomGrid.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="RecipeDetailPage_Tapped" />
+                                                                </local:CustomGrid.GestureRecognizers>
+                                                            </local:CustomGrid>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </local:NativeListView.ItemTemplate>
+                                            </local:NativeListView>
+                                        </Grid>
+                                    </DataTemplate>
+                                </abstractions:CarouselViewControl.ItemTemplate>
+                            </abstractions:CarouselViewControl>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="0,0,0,-10" RowSpacing="0" ColumnSpacing="0" WidthRequest="15">
+                            <ListView  x:Name="LstAlphabet" ItemsSource="{Binding AlphabetList, Mode=TwoWay}" HasUnevenRows="True" SelectionMode="Single"
+                                       SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HorizontalOptions="Center" VerticalOptions="FillAndExpand" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <local:CustomButton Text="{Binding AlphabetName}" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" Padding="0" Margin="0"
+                                                    TextColor="Blue" FontSize="12" Clicked="Alphabet_TapGestureRecognizer_Tapped" HeightRequest="25" WidthRequest="25" ContentLayout="Left, 1" />
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Grid>
+                </local:CustomFrame>
+            </Grid>
+            <!--Ads Section-->
+            <!--<local:AdMobView Grid.Row="2" HeightRequest="60" WidthRequest="320" HeightRequest="50" IsVisible="{Binding AdsIsVisible}"/>-->
+            <local:AdMobView AdUnitId="ca-app-pub-8163632011495903/5496711675" Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage> 
